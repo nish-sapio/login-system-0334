@@ -15,7 +15,7 @@ var url = 'mongodb://localhost/user';
 const app = express();
 
 //set up view engine(jade templating engine)
-//app.set("view engine", "ejs");3
+//app.set("view engine", "ejs");
 
 //manage the sessions on the website
 app.use(cookieSession({
