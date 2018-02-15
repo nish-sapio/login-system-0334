@@ -15,7 +15,7 @@ var url = 'mongodb://localhost/user';
 const app = express();
 
 //set up view engine(jade templating engine)
-//app.set("view engine", "ejs");
+app.set("view engine", "jade");
 
 //manage the sessions on the website
 app.use(cookieSession({
@@ -46,8 +46,8 @@ mongoose.connection.once('open', () => {
 
 //path to the home page
 app.get("/", (req, res) => {
-	
-	res.sendFile(__dirname + "/home.html");
+	res.render('home');
+	//res.sendFile(__dirname + "/home.html");
 });
 
 //listen to the port
