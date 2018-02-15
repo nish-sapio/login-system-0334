@@ -45,11 +45,8 @@ passport.use(
 				}
 
 				//user exists but hasnt made any changes
-
-				console.log("the already registered profile is:" + currentUser);
-				console.log("the profile is: **************");
-				console.log(profile);
-
+				console.log('You are an already registered user. your profile is:')
+				console.log(currentUser);
 				done(null, currentUser);
 				
 			}

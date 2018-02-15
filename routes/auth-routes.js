@@ -1,6 +1,7 @@
 const router = require('express').Router();
 const passport = require('passport');
-
+const cookieSession = require('cookie-session')
+const keys = require('../config/keys')
 //auth with google
 router.get("/google", passport.authenticate('google',{
 	scope: ['email','profile']
@@ -11,8 +12,10 @@ router.get("/google", passport.authenticate('google',{
 //auth logout
 router.get("/logout", (req,res) =>{
 	req.logout();
+
 	res.redirect('/');
-})
+
+});
 
 
 // redirect url

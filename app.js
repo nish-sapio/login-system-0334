@@ -6,7 +6,7 @@ const keys = require('./config/keys.js')
 const cookieSession = require('cookie-session');
 const passport = require('passport');
 const profileRoutes = require('./routes/profile-routes');
-var path = require('path');
+const path = require('path');
 
 
 var port = 3000 || process.env.PORT;
@@ -15,7 +15,7 @@ var url = 'mongodb://localhost/user';
 const app = express();
 
 //set up view engine(jade templating engine)
-//app.set("view engine", "ejs");3
+app.set("view engine", "jade");
 
 //manage the sessions on the website
 app.use(cookieSession({
@@ -23,7 +23,9 @@ app.use(cookieSession({
 	keys: [keys.session.cookieKey] 
 }));
 
+
 app.use(express.static(path.join(__dirname, 'login_v5')));
+
 //initialize passport before the sessions
 app.use(passport.initialize());
 app.use(passport.session());
@@ -35,7 +37,7 @@ app.use('/profile', profileRoutes);
 
 //connect to the database
 mongoose.connect(url);
-console.log("*****", __dirname);
+
 mongoose.connection.once('open', () => {
 	console.log("connection to database successful!");
 }
@@ -46,8 +48,7 @@ mongoose.connection.once('open', () => {
 
 //path to the home page
 app.get("/", (req, res) => {
-	
-	res.sendFile(__dirname + "/home.html");
+	res.render('home');
 });
 
 //listen to the port
