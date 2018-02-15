@@ -6,7 +6,7 @@ const keys = require('./config/keys.js')
 const cookieSession = require('cookie-session');
 const passport = require('passport');
 const profileRoutes = require('./routes/profile-routes');
-var path = require('path');
+const path = require('path');
 
 
 var port = 3000 || process.env.PORT;
@@ -24,6 +24,7 @@ app.use(cookieSession({
 }));
 
 app.use(express.static(path.join(__dirname, 'login_v5')));
+
 //initialize passport before the sessions
 app.use(passport.initialize());
 app.use(passport.session());
@@ -48,6 +49,10 @@ mongoose.connection.once('open', () => {
 app.get("/", (req, res) => {
 	res.render('home');
 	//res.sendFile(__dirname + "/home.html");
+});
+
+app.get('/profile/user/', (req,res) =>{
+	res.render('profile');
 });
 
 //listen to the port
