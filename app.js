@@ -23,6 +23,7 @@ app.use(cookieSession({
 	keys: [keys.session.cookieKey] 
 }));
 
+
 app.use(express.static(path.join(__dirname, 'login_v5')));
 
 //initialize passport before the sessions
@@ -36,7 +37,7 @@ app.use('/profile', profileRoutes);
 
 //connect to the database
 mongoose.connect(url);
-console.log("*****", __dirname);
+
 mongoose.connection.once('open', () => {
 	console.log("connection to database successful!");
 }
@@ -48,11 +49,6 @@ mongoose.connection.once('open', () => {
 //path to the home page
 app.get("/", (req, res) => {
 	res.render('home');
-	//res.sendFile(__dirname + "/home.html");
-});
-
-app.get('/profile/user/', (req,res) =>{
-	res.render('profile');
 });
 
 //listen to the port

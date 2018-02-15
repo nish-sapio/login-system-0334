@@ -31,16 +31,10 @@ passport.use(
 			if(currentUser){
 				//user already exists but has updated his record in google
 				if(currentUser.username!=profile.displayName || currentUser.photo!=profile.photos[0].value 
-					|| currentUser.gender!=profile.gender || currentUser.FirstName!= profile.name.givenName || currentUser.LastName != profile.name.familyName)
+					|| currentUser.gender!=profile.gender)
 				{
 					if(currentUser.username!=profile.displayName)
 						currentUser.username=profile.displayName;
-					
-					if(currentUser.FirstName!=profile.name.givenName)
-						currentUser.FirstName=profile.name.givenName;
-
-					if(currentUser.LastName!=profile.name.familyName)
-						currentUser.LastName=profile.name.familyName;
 
 					if(currentUser.photo!=profile.photos[0].value)
 						currentUser.photo=profile.photos[0].value;
@@ -51,11 +45,8 @@ passport.use(
 				}
 
 				//user exists but hasnt made any changes
-
-				console.log("the already registered profile is:" + currentUser);
-				console.log("the profile is: **************");
-				console.log(profile);
-
+				console.log('You are an already registered user. your profile is:')
+				console.log(currentUser);
 				done(null, currentUser);
 				
 			}
@@ -63,8 +54,6 @@ passport.use(
 			else{
 				new User({
 				username: profile.displayName,
-				FirstName: profile.name.givenName,
-				LastName: profile.name.familyName,
 				googleId: profile.id,
 				email: profile.emails[0].value,
 				photo: profile.photos[0].value,
