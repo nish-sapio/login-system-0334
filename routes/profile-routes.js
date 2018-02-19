@@ -19,7 +19,7 @@ router.get('/', authCheck, (req, res)=>{
 
 });
 
-router.use('/upload',upload);
+router.use('/upload',authCheck, upload);
 
 
 
