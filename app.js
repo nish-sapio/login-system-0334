@@ -6,8 +6,9 @@ const keys = require('./config/keys.js')
 const cookieSession = require('cookie-session');
 const passport = require('passport');
 const profileRoutes = require('./routes/profile-routes');
+const multer = require('multer');
 const path = require('path');
-
+const upload= require('./file/upload.js');
 
 var port = 3000 || process.env.PORT;
 var url = 'mongodb://localhost/user';
@@ -25,6 +26,7 @@ app.use(cookieSession({
 
 
 app.use(express.static(path.join(__dirname, 'login_v5')));
+//app.use(express.static(path.join(__dirname, 'data')));
 
 //initialize passport before the sessions
 app.use(passport.initialize());
@@ -50,6 +52,7 @@ mongoose.connection.once('open', () => {
 app.get("/", (req, res) => {
 	res.render('home');
 });
+
 
 //listen to the port
 app.listen(port, () =>{

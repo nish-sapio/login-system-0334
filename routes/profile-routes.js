@@ -1,4 +1,5 @@
 const router = require('express').Router();
+const upload = require('../file/upload')
 
 const authCheck = (req, res, next)=>{
 	if(!req.user){
@@ -17,6 +18,9 @@ router.get('/', authCheck, (req, res)=>{
 	res.render('profile', {user: req.user});
 
 });
+
+router.use('/upload',upload);
+
 
 
 module.exports = router;
