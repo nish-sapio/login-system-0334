@@ -2,6 +2,7 @@ const mongoose = require('mongoose');
 const schema = mongoose.Schema;
 
 var fileSchema = new schema({
+	user_id: String,
 	originalName: String,
 	encoding: String,
 	mimeType: String,
@@ -9,6 +10,6 @@ var fileSchema = new schema({
 	size: Number,
 });
 
-const fileSchema= mongoose.model('file', fileSchema);
+const file= mongoose.model('file', fileSchema);
 
-module.exports = fileSchema;  
+module.exports = file;  

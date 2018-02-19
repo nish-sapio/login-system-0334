@@ -59,19 +59,20 @@ html
 							.col-md-12
 								.card
 									.header
-										h4.title Upload Files
+										h4.title Uploaded Files
 
 									.content
 										.form-group
 											.row
-												.col-md-6
-													label Upload files
-														form(action="/profile/upload" method="POST" enctype="multipart/form-data")
-															input(name="data" type="file")
-															<br>
-															button.btn(type="submit") submit
-												.col-md-6
-													span #{typeof msg!= 'undefined' ? msg : ''}
+												.col-md-12
+													var items =item
+													label Uploaded files
+													ul
+														each value in items
+															li = value
+
+
+
 
 	script(src="/assets/js/jquery.3.2.1.min.js" type="text/javascript")
 	script(src="/assets/js/bootstrap.min.js" type="text/javascript")

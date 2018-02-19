@@ -7,8 +7,8 @@ const authCheck = (req, res, next)=>{
 		res.redirect('/');
 	}
 	else{
-
 		//if logged in
+		global.id = req.user.googleId;
 		next();
 	}
 };
