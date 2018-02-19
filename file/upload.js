@@ -1,8 +1,8 @@
 const multer = require('multer');
 const path = require('path');
 const router = require('express').Router();
-const file = require('../database/fileSchema');
-// const model = file.model;
+const fileschema = require('../database/fileSchema');
+
 
 
 
@@ -51,36 +51,25 @@ router.get('/', (req, res)=>{
 });
 
 
-//function
-// function extractor(item){
-// 	var name= [];
-// 	var i = 0;
-// 	item.forEach((files)=>{
-// 		name[i++] = item.originalname;
-// 		console.log(name[i]);
-// 	})
-// 	return name;
-// }
+// view files
+router.get('/files', (req,res)=>{
+fileschema.find({user_id: id}, (err, item)=>{
+	if(err)
+	{
+				console.log(err);
+				res.status(500).send(err);
+				return;
+	}
+	else
+		{		
+			// res.send(item);
+			console.log(item);
+			res.render('file', {files: item});
+		}
 
+})
 
-// //view files
-// router.get('/files', (req,res)=>{
-// model.find({user_id: id}, (err, item)=>{
-// 	if(err)
-// 	{
-// 				console.log(err);
-// 				res.status(500).send(err);
-// 				return;
-// 	}
-// 	else
-// 		{		
-// 			console.log(item);
-// 			res.render('file', {files: item});
-// 		}
-
-// })
-
-// })
+})
 
 
 //upload files
@@ -98,7 +87,7 @@ router.post('/', (req,res)=>{
 			}
 
 			else{
-				new file({
+				new fileschema({
 						user_id: id,
 						originalName: req.file.originalname,
 						encoding: req.file.encoding,
